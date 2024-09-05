@@ -30,12 +30,5 @@ Tests are written in JavaScript using the Playwright API. See the [Playwright do
 
 ## Running Tests
 
-Tests can be run using the `npx playwright test` command. This will execute all tests in the `tests/` directory.
+Tests can be run using the `npx playwright test` command. This will execute all tests in the `test/` directory.
 
-## Contributing
-
-Contributions are welcome! Please submit a pull request with your changes.
-
-## License
-
-This project is licensed under the MIT License.
