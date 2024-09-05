@@ -36,7 +36,7 @@ class LoginPage{
     }
     async navigateToAB(){
       await this.page.waitForSelector(selector.backButton);
-      await this.page.screenshot({ path: 'screenshotChat.png' });
+      await this.page.screenshot({ path: './screenshots/screenshotChat.png' });
       await this.page.locator(selector.backButton).click();
       await this.page.locator(selector.menuChatbot).click();
       await this.page.locator(selector.anoynymousBatButton).click();

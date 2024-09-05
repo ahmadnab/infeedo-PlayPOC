@@ -3,16 +3,12 @@ const selector = require('../components/loginComponents.js');
 const LoginPage = require('../pages/loginPage.js');
 const loginData = require('../../../test-data/loginData.json');
 const config = require('../../../test-data/config.json');
-import { allure } from "allure-playwright";
 
 
 test.describe.parallel('Login Tests for Different Regions', () => {
   for (const [region, data] of Object.entries(loginData)) {
     test(`Login Test for ${region} Region`, async ({ page }) => {
       const loginPage = new LoginPage(page);
-      await allure.description(
-        "This test attempts to log into the website using a login and a password. Fails if any error happens.\n\nNote that this test does not test 2-Factor Authentication.",
-      );
       await page.goto('https://www.infeedo.com/login');
       await page.waitForTimeout(2000);
       await loginPage.enterEmail(data.email);
@@ -56,12 +52,12 @@ test.describe.parallel('Login Tests for Different Regions', () => {
       await loginPage.navigateToAB();
       
       // Take another screenshot for verification
-      await page.screenshot({ path: 'screenshotAnonymous.png' });
+      await page.screenshot({ path: './screenshots/screenshotAnonymous.png' });
       await expect(page).toHaveURL(config.anonymousBatURL);
       
       // Navigate to another module
       await loginPage.navigateToAIA();
-      await page.screenshot({ path: 'screenshotAI.png' });
+      await page.screenshot({ path: '././screenshots/screenshotAI.png' });
       await expect(page).toHaveURL(config.aiAssistURL);
   
       // Close the context
