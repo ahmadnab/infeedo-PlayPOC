@@ -1,31 +1,50 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","21546","Login Test for Indonesia Region","Mobile Safari","Wed Sep 04 22:05:05 IST 2024","passed","Wed Sep 04 22:05:27 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
-"","2342","Login and switch between modules in mobile view","chromium","Wed Sep 04 23:30:00 IST 2024","failed","Wed Sep 04 23:30:02 IST 2024","Login Tests for Different Regions > Amber Chatbot Mobile View Tests","login/test/login.spec.js","",""
-"","2287","Tenure People Page Export","chromium","Thu Sep 05 01:10:15 IST 2024","passed","Thu Sep 05 01:10:17 IST 2024","Tenure Test Cases","tenure/test/tenure.spec.js","",""
-"","21995","Login Test for Indonesia Region","Mobile Chrome","Wed Sep 04 22:04:21 IST 2024","passed","Wed Sep 04 22:04:43 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
-"","7","Login and switch between modules in mobile view","firefox","Wed Sep 04 22:03:12 IST 2024","failed","Wed Sep 04 22:03:12 IST 2024","Login Tests for Different Regions > Amber Chatbot Mobile View Tests","login/test/login.spec.js","",""
 "","21691","Login Test for US Region","Mobile Safari","Wed Sep 04 22:04:43 IST 2024","passed","Wed Sep 04 22:05:05 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
-"","26208","Login Test for EU Region","Mobile Chrome","Wed Sep 04 22:04:17 IST 2024","passed","Wed Sep 04 22:04:43 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
-"","19540","Login and switch between modules in mobile view (iPhone 12)","chromium","Thu Sep 05 01:10:10 IST 2024","passed","Thu Sep 05 01:10:29 IST 2024","Login Tests for Different Regions > Amber Chatbot Mobile View Tests","login/test/login.spec.js","",""
-"","14362","Login Test for IN Region","Mobile Chrome","Wed Sep 04 22:04:02 IST 2024","failed","Wed Sep 04 22:04:16 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
-"","24123","Login Test for US Region","webkit","Wed Sep 04 22:03:13 IST 2024","passed","Wed Sep 04 22:03:37 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
+"","21995","Login Test for Indonesia Region","Mobile Chrome","Wed Sep 04 22:04:21 IST 2024","passed","Wed Sep 04 22:04:43 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
+"","120003","Login and switch between modules in mobile view","Mobile Chrome","Wed Sep 04 22:04:36 IST 2024","broken","Wed Sep 04 22:06:36 IST 2024","Login Tests for Different Regions > Amber Chatbot Mobile View Tests","login/test/login.spec.js","",""
+"","24686","Login Test for EU Region","webkit","Wed Sep 04 22:03:37 IST 2024","passed","Wed Sep 04 22:04:01 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
+"This test attempts to log into the website using a login and a password. Fails if any error happens.
+
+Note that this test does not test 2-Factor Authentication.","12000","Login Test for IN Region","chromium","Thu Sep 05 13:00:17 IST 2024","failed","Thu Sep 05 13:00:29 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
 "","120010","Login and switch between modules in mobile view","webkit","Wed Sep 04 22:03:40 IST 2024","broken","Wed Sep 04 22:05:40 IST 2024","Login Tests for Different Regions > Amber Chatbot Mobile View Tests","login/test/login.spec.js","",""
+"","26208","Login Test for EU Region","Mobile Chrome","Wed Sep 04 22:04:17 IST 2024","passed","Wed Sep 04 22:04:43 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
+"","24129","Login Test for EU Region","Mobile Safari","Wed Sep 04 22:04:59 IST 2024","passed","Wed Sep 04 22:05:24 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
 "","22671","Login Test for US Region","Mobile Chrome","Wed Sep 04 22:03:58 IST 2024","passed","Wed Sep 04 22:04:21 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
 "","120074","Tenure People Page Export","Mobile Safari","Wed Sep 04 23:11:35 IST 2024","broken","Wed Sep 04 23:13:36 IST 2024","Tenure Test Cases","tenure/test/tenure.spec.js","",""
-"","10994","Login Test for IN Region","chromium","Thu Sep 05 01:09:58 IST 2024","failed","Thu Sep 05 01:10:09 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
-"","16758","Login Test for US Region","chromium","Thu Sep 05 01:09:58 IST 2024","passed","Thu Sep 05 01:10:15 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
-"","16146","Login Test for IN Region","webkit","Wed Sep 04 22:03:23 IST 2024","failed","Wed Sep 04 22:03:39 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
-"","526","Verify Tenure Landing Page","chromium","Thu Sep 05 01:10:15 IST 2024","passed","Thu Sep 05 01:10:15 IST 2024","Tenure Test Cases","tenure/test/tenure.spec.js","",""
-"","27201","Login Test for EU Region","firefox","Wed Sep 04 22:02:44 IST 2024","passed","Wed Sep 04 22:03:12 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
-"","20441","Login Test for Indonesia Region","webkit","Wed Sep 04 22:03:37 IST 2024","passed","Wed Sep 04 22:03:58 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
-"","120003","Login and switch between modules in mobile view","Mobile Safari","Wed Sep 04 22:05:24 IST 2024","broken","Wed Sep 04 22:07:24 IST 2024","Login Tests for Different Regions > Amber Chatbot Mobile View Tests","login/test/login.spec.js","",""
-"","1","Verify Tenure Landing Page","Mobile Safari","Wed Sep 04 23:11:35 IST 2024","broken","Wed Sep 04 23:11:35 IST 2024","Tenure Test Cases","tenure/test/tenure.spec.js","",""
-"","16558","Login Test for EU Region","chromium","Thu Sep 05 01:09:58 IST 2024","passed","Thu Sep 05 01:10:15 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
-"","15951","Login Test for Indonesia Region","chromium","Thu Sep 05 01:09:58 IST 2024","passed","Thu Sep 05 01:10:14 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
-"","39117","Login Test for IN Region","firefox","Wed Sep 04 22:02:43 IST 2024","failed","Wed Sep 04 22:03:22 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
-"","28610","Login Test for US Region","firefox","Wed Sep 04 22:02:42 IST 2024","passed","Wed Sep 04 22:03:11 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
-"","24331","Login Test for Indonesia Region","firefox","Wed Sep 04 22:03:12 IST 2024","passed","Wed Sep 04 22:03:36 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
-"","24129","Login Test for EU Region","Mobile Safari","Wed Sep 04 22:04:59 IST 2024","passed","Wed Sep 04 22:05:24 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
-"","24686","Login Test for EU Region","webkit","Wed Sep 04 22:03:37 IST 2024","passed","Wed Sep 04 22:04:01 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
+"This test attempts to log into the website using a login and a password. Fails if any error happens.
+
+Note that this test does not test 2-Factor Authentication.","22762","Login Test for EU Region","chromium","Thu Sep 05 13:00:17 IST 2024","passed","Thu Sep 05 13:00:39 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
+"","7","Login and switch between modules in mobile view","firefox","Wed Sep 04 22:03:12 IST 2024","failed","Wed Sep 04 22:03:12 IST 2024","Login Tests for Different Regions > Amber Chatbot Mobile View Tests","login/test/login.spec.js","",""
+"","985","Verify Tenure Landing Page","chromium","Thu Sep 05 13:00:38 IST 2024","passed","Thu Sep 05 13:00:39 IST 2024","Tenure Test Cases","tenure/test/tenure.spec.js","",""
 "","15453","Login Test for IN Region","Mobile Safari","Wed Sep 04 22:04:43 IST 2024","failed","Wed Sep 04 22:04:59 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
-"","120003","Login and switch between modules in mobile view","Mobile Chrome","Wed Sep 04 22:04:36 IST 2024","broken","Wed Sep 04 22:06:36 IST 2024","Login Tests for Different Regions > Amber Chatbot Mobile View Tests","login/test/login.spec.js","",""
+"This test attempts to log into the website using a login and a password. Fails if any error happens.
+
+Note that this test does not test 2-Factor Authentication.","25494","Login Test for EU Region","firefox","Thu Sep 05 13:00:58 IST 2024","passed","Thu Sep 05 13:01:24 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
+"This test attempts to log into the website using a login and a password. Fails if any error happens.
+
+Note that this test does not test 2-Factor Authentication.","21637","Login Test for Indonesia Region","chromium","Thu Sep 05 13:00:17 IST 2024","passed","Thu Sep 05 13:00:38 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
+"","687","Verify Tenure Landing Page","firefox","Thu Sep 05 13:01:02 IST 2024","passed","Thu Sep 05 13:01:03 IST 2024","Tenure Test Cases","tenure/test/tenure.spec.js","",""
+"","120003","Login and switch between modules in mobile view","Mobile Safari","Wed Sep 04 22:05:24 IST 2024","broken","Wed Sep 04 22:07:24 IST 2024","Login Tests for Different Regions > Amber Chatbot Mobile View Tests","login/test/login.spec.js","",""
+"This test attempts to log into the website using a login and a password. Fails if any error happens.
+
+Note that this test does not test 2-Factor Authentication.","21004","Login Test for US Region","chromium","Thu Sep 05 13:00:17 IST 2024","passed","Thu Sep 05 13:00:38 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
+"","14362","Login Test for IN Region","Mobile Chrome","Wed Sep 04 22:04:02 IST 2024","failed","Wed Sep 04 22:04:16 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
+"","21546","Login Test for Indonesia Region","Mobile Safari","Wed Sep 04 22:05:05 IST 2024","passed","Wed Sep 04 22:05:27 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
+"","26456","Login and switch between modules in mobile view (iPhone 12)","chromium","Thu Sep 05 13:00:30 IST 2024","failed","Thu Sep 05 13:00:56 IST 2024","Login Tests for Different Regions > Amber Chatbot Mobile View Tests","login/test/login.spec.js","",""
+"","1701","Tenure People Page Export","firefox","Thu Sep 05 13:01:18 IST 2024","passed","Thu Sep 05 13:01:20 IST 2024","Tenure Test Cases","tenure/test/tenure.spec.js","",""
+"","3","Login and switch between modules in mobile view (iPhone 12)","firefox","Thu Sep 05 13:01:02 IST 2024","failed","Thu Sep 05 13:01:02 IST 2024","Login Tests for Different Regions > Amber Chatbot Mobile View Tests","login/test/login.spec.js","",""
+"This test attempts to log into the website using a login and a password. Fails if any error happens.
+
+Note that this test does not test 2-Factor Authentication.","18898","Login Test for IN Region","firefox","Thu Sep 05 13:00:57 IST 2024","failed","Thu Sep 05 13:01:16 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
+"","16146","Login Test for IN Region","webkit","Wed Sep 04 22:03:23 IST 2024","failed","Wed Sep 04 22:03:39 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
+"","20441","Login Test for Indonesia Region","webkit","Wed Sep 04 22:03:37 IST 2024","passed","Wed Sep 04 22:03:58 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
+"","2469","Tenure People Page Export","chromium","Thu Sep 05 13:00:39 IST 2024","passed","Thu Sep 05 13:00:41 IST 2024","Tenure Test Cases","tenure/test/tenure.spec.js","",""
+"This test attempts to log into the website using a login and a password. Fails if any error happens.
+
+Note that this test does not test 2-Factor Authentication.","16485","Login Test for Indonesia Region","firefox","Thu Sep 05 13:01:01 IST 2024","passed","Thu Sep 05 13:01:17 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
+"","2342","Login and switch between modules in mobile view","chromium","Wed Sep 04 23:30:00 IST 2024","failed","Wed Sep 04 23:30:02 IST 2024","Login Tests for Different Regions > Amber Chatbot Mobile View Tests","login/test/login.spec.js","",""
+"","24123","Login Test for US Region","webkit","Wed Sep 04 22:03:13 IST 2024","passed","Wed Sep 04 22:03:37 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
+"","1","Verify Tenure Landing Page","Mobile Safari","Wed Sep 04 23:11:35 IST 2024","broken","Wed Sep 04 23:11:35 IST 2024","Tenure Test Cases","tenure/test/tenure.spec.js","",""
+"This test attempts to log into the website using a login and a password. Fails if any error happens.
+
+Note that this test does not test 2-Factor Authentication.","19646","Login Test for US Region","firefox","Thu Sep 05 13:00:41 IST 2024","passed","Thu Sep 05 13:01:00 IST 2024","Login Tests for Different Regions","login/test/login.spec.js","",""
