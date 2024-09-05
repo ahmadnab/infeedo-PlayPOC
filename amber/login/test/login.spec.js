@@ -57,7 +57,7 @@ test.describe.parallel('Login Tests for Different Regions', () => {
       
       // Navigate to another module
       await loginPage.navigateToAIA();
-      await page.screenshot({ path: '././screenshots/screenshotAI.png' });
+      await page.screenshot({ path: './screenshots/screenshotAI.png' });
       await expect(page).toHaveURL(config.aiAssistURL);
   
       // Close the context
