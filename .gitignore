@@ -6,3 +6,4 @@ node_modules/
 /test-data/loginData.json
 /test-data/config.json
 /allure-results/
+/screnshots/
