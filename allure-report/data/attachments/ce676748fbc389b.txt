@@ -1,0 +1,6 @@
+page.goto: Test ended.
+Call log:
+  - navigating to "https://beta.amber.infeedo.com/login", waiting until "load"
+
+    at LoginPage.login (/Users/ahmadnabeel/playwrightPOCv2/tests/login/pages/loginPage.js:11:29)
+    at /Users/ahmadnabeel/playwrightPOCv2/tests/login/test/login.spec.js:43:25

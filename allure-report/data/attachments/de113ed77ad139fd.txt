@@ -1,0 +1,37 @@
+page.goto: net::ERR_ABORTED; maybe frame was detached?
+Call log:
+  - navigating to "https://beta.amber.infeedo.com/login", waiting until "load"
+
+    at LoginPage.login (/Users/ahmadnabeel/playwrightPOCv2/tests/login/pages/loginPage.js:11:29)
+    at /Users/ahmadnabeel/playwrightPOCv2/tests/tenure/test/tenure.spec.js:20:21 {
+  name: 'Error',
+  [Symbol(step)]: {
+    stepId: 'pw:api@6',
+    location: {
+      file: '/Users/ahmadnabeel/playwrightPOCv2/tests/login/pages/loginPage.js',
+      line: 11,
+      column: 29,
+      function: 'LoginPage.login'
+    },
+    category: 'pw:api',
+    title: 'page.goto(https://beta.amber.infeedo.com/login)',
+    apiName: 'page.goto',
+    params: { url: 'https://beta.amber.infeedo.com/login', waitUntil: 'load' },
+    canNestByTime: true,
+    boxedStack: undefined,
+    steps: [],
+    complete: [Function: complete],
+    endWallTime: 1725478350484,
+    error: {
+      message: 'Error: page.goto: net::ERR_ABORTED; maybe frame was detached?\n' +
+        'Call log:\n' +
+        '  \x1B[2m- navigating to "https://beta.amber.infeedo.com/login", waiting until "load"\x1B[22m\n',
+      stack: 'Error: page.goto: net::ERR_ABORTED; maybe frame was detached?\n' +
+        'Call log:\n' +
+        '  \x1B[2m- navigating to "https://beta.amber.infeedo.com/login", waiting until "load"\x1B[22m\n' +
+        '\n' +
+        '    at LoginPage.login (/Users/ahmadnabeel/playwrightPOCv2/tests/login/pages/loginPage.js:11:29)\n' +
+        '    at /Users/ahmadnabeel/playwrightPOCv2/tests/tenure/test/tenure.spec.js:20:21'
+    }
+  }
+}

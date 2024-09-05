@@ -1,0 +1,16 @@
+{
+    "baseURL": "https://beta.amber.infeedo.com",
+    "username": "automationuser772@gmail.com",
+    "password": "Qwe123qwe123",
+    "YesterdayHighlightsURL": "https://beta.amber.infeedo.com/dashboard/highlights/yesterday",
+    "TenureURL": "https://beta.amber.infeedo.com/dashboard/tenure/engagement-analytics",
+    "chatBaseURL": "https://chat.infeedo.com/chat/amber",
+    "anonymousBatURL": "https://chat.infeedo.com/chat/anonymous",
+    "aiAssistURL": "https://chat.infeedo.com/chat/query",
+    "GmailUsername": "automation@infeedo.com",
+    "GmailPassword": "Automation@772",
+    "GmailAppPassword": "stmfphzsharrtxak", 
+    "GmailURL": "https://mail.google.com/mail/u/0/",
+    "tenureExportMailSubject": "Automation, your CSV report from TENURE (All Chats) is ready for download!",
+    "fileTenureExport": "TENURE_20906427_TABLE"
+}
