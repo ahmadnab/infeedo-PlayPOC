@@ -55,7 +55,7 @@ test.describe('Tenure Test Cases', () => {
 
       await page.waitForSelector(selector.nextButton);
       await page.locator(selector.nextButton).click();
-      await page.locator(selector.nextButton).click(); // Click next twice
+      await page.locator(selector.nextButton).click(); // Click next twice for 2 steps in export modal
 
       await page.waitForSelector(selector.exportButton);
       await page.locator(selector.exportButton).click();

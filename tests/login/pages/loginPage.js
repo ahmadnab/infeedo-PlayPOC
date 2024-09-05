@@ -35,16 +35,16 @@ class LoginPage{
             await this.page.locator(selector.loginButton).click();
     }
     async navigateToAB(){
-      await page.waitForSelector(selector.backButton);
-      await page.screenshot({ path: 'screenshotChat.png' });
-      await page.locator(selector.backButton).click();
-      await page.locator(selector.menuChatbot).click();
-      await page.locator(selector.anoynymousBatButton).click();
+      await this.page.waitForSelector(selector.backButton);
+      await this.page.screenshot({ path: 'screenshotChat.png' });
+      await this.page.locator(selector.backButton).click();
+      await this.page.locator(selector.menuChatbot).click();
+      await this.page.locator(selector.anoynymousBatButton).click();
     }
 
     async navigateToAIA(){
-      await page.locator(selector.backButton).click();
-      await page.locator(selector.aiAssistButton).click();
+      await this.page.locator(selector.backButton).click();
+      await this.page.locator(selector.aiAssistButton).click();
     }
 
     async isErrorToastVisible() {
