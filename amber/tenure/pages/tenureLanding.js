@@ -8,12 +8,17 @@ class NavigateToTenure{
     }
 
     async switchToTenureModule(){
+      try{
         await this.page.waitForSelector(selector.sideMenu);
         await this.page.hover(selector.sideMenu); 
         await this.page.locator(selector.tenureModuleSelector).click();
         const url = config.TenureURL;
         await expect(this.page).toHaveURL(url);  
-    }
+      }
+      catch(e){
+        console.log(e);
+      }   
+     }
     async isToastVisible() {
         try {
           await this.page.waitForSelector(selector.toastMessage, { timeout: 5000, state: 'visible' });

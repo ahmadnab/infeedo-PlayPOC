@@ -7,12 +7,13 @@ const config = require('../../../test-data/config.json');
 
 
 test.describe('Verify Highlights are consistent with respective module', () => {
+
     test('Verify Highlights are consistent with respective module', async ({ page }) => {
         const loginPage = new LoginPage(page);
         await loginPage.login('dashboard');
         const navigateToYesterdayHighlights = new NavigateToYesterdayHighlights(page);
         await navigateToYesterdayHighlights.getDetailsYesterdayHighlights();
-        await navigateToYesterdayHighlights.getDetailsYesterdayHighlightsData();
+        await navigateToYesterdayHighlights.validateTenureBuckets();
     
     });
     

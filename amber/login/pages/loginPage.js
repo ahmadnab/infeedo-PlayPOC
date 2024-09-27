@@ -12,7 +12,7 @@ class LoginPage{
             switch(module) {
                 case 'dashboard':
                     await this.commonLogin();
-                    await expect(this.page).toHaveURL(config.YesterdayHighlightsURL);
+                   await expect(this.page).toHaveURL(config.YesterdayHighlightsURL);
                     break;
                 case 'chat':
                     await this.page.locator(selector.loginSwitchDropdown).click();
