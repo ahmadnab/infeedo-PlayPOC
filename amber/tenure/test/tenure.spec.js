@@ -33,7 +33,7 @@ test.describe('Tenure Test Cases', () => {
     try {
       // Wait for the people list tab to be visible and verify the correct URL
       await page.waitForSelector(selector.peopleListTab);
-      await expect(page).toHaveURL(config.TenureURL);
+      await expect(page).toHaveURL(config.url.TenureURL);
     } catch (err) {
       console.error(err);
       throw err;

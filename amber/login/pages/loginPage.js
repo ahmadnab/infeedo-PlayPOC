@@ -8,11 +8,11 @@ class LoginPage{
     }
     async login(module){
         try{
-            await this.page.goto(`${config.baseURL}/login`)
+            await this.page.goto(`${config.url.baseURL}/login`)
             switch(module) {
                 case 'dashboard':
                     await this.commonLogin();
-                    await expect(this.page).toHaveURL(config.YesterdayHighlightsURL);
+                    await expect(this.page).toHaveURL(config.url.YesterdayHighlightsURL);
                     break;
                 case 'chat':
                     await this.page.locator(selector.loginSwitchDropdown).click();

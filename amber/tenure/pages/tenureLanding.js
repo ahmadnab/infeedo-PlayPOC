@@ -11,7 +11,7 @@ class NavigateToTenure{
         await this.page.waitForSelector(selector.sideMenu);
         await this.page.hover(selector.sideMenu); 
         await this.page.locator(selector.tenureModuleSelector).click();
-        const url = config.TenureURL;
+        const url = config.url.TenureURL;
         await expect(this.page).toHaveURL(url);  
     }
     async isToastVisible() {

@@ -46,19 +46,19 @@ test.describe.parallel('Login Tests for Different Regions', () => {
       await loginPage.login('chat');
       
       // Validate that the URL has changed to the chat URL
-      await expect(page).toHaveURL(config.chatBaseURL);
+      await expect(page).toHaveURL(config.url.chatBaseURL);
   
       // Interact with page elements in mobile view
       await loginPage.navigateToAB();
       
       // Take another screenshot for verification
       await page.screenshot({ path: './screenshots/screenshotAnonymous.png' });
-      await expect(page).toHaveURL(config.anonymousBatURL);
+      await expect(page).toHaveURL(config.url.anonymousBatURL);
       
       // Navigate to another module
       await loginPage.navigateToAIA();
       await page.screenshot({ path: './screenshots/screenshotAI.png' });
-      await expect(page).toHaveURL(config.aiAssistURL);
+      await expect(page).toHaveURL(config.url.aiAssistURL);
   
       // Close the context
       await context.close();
