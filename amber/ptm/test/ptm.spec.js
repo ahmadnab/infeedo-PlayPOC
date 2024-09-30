@@ -1,0 +1,49 @@
+const { test, expect, chromium } = require('@playwright/test');
+const LoginPage = require('../../login/pages/loginPage');
+const selector = require('../components/ptmComponents');
+const config = require('../../../test-data/config.json');
+const PTM = require('../pages/ptm');
+const common = require('../../../reusable/common');
+
+let browser;
+let context;
+let page;
+
+test.describe('PTM Test Cases', () => {
+
+  // Before all tests, create a browser context and a page, then log in
+  test.beforeAll(async () => {
+    browser = await chromium.launch();
+    context = await browser.newContext();
+    page = await context.newPage();
+
+    const loginPage = new LoginPage(page);
+    await loginPage.login('dashboard');
+
+    const ptm_obj = new PTM(page);
+    await ptm_obj.switchToPtmModule();
+  });
+
+  // After all tests, close the browser context
+  test.afterAll(async () => {
+    await context.close();
+    await browser.close();
+  });
+
+  test('Verify Tenure and PTM case Count', async () => {
+    try {
+        const ptm_obj = new PTM(page);
+        await ptm_obj.switchPtmTab('analytics');
+        await ptm_obj.applyTouchpointFilterBasisModule('tenure');
+        const ptmModuleCaseCount = await ptm_obj.getCaseCount();
+        const tenureModulePTMCaseCount = await common.getPTMCounts(page, 'tenure');
+        const isMatching = common.compareData(tenureModulePTMCaseCount, ptmModuleCaseCount);
+        expect(isMatching).toBeTruthy();
+
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  });
+
+});

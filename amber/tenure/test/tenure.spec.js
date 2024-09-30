@@ -1,6 +1,6 @@
 const { test, expect, chromium } = require('@playwright/test');
 const LoginPage = require('../../login/pages/loginPage.js');
-const TenureLanding = require('../pages/tenureLanding.js');
+const Tenure = require('../pages/tenureLanding.js');
 const selector = require('../components/tenureComponents.js');
 const config = require('../../../test-data/config.json');
 
@@ -19,8 +19,8 @@ test.describe('Tenure Test Cases', () => {
     const loginPage = new LoginPage(page);
     await loginPage.login('dashboard');
 
-    const tenureLanding = new TenureLanding(page);
-    await tenureLanding.switchToTenureModule();
+    const tenure = new Tenure(page);
+    await tenure.switchToTenureModule();
   });
 
   // After all tests, close the browser context
@@ -29,20 +29,9 @@ test.describe('Tenure Test Cases', () => {
     await browser.close();
   });
 
-  test('Verify Tenure Landing Page', async () => {
-    try {
-      // Wait for the people list tab to be visible and verify the correct URL
-      await page.waitForSelector(selector.peopleListTab);
-      await expect(page).toHaveURL(config.url.TenureURL);
-    } catch (err) {
-      console.error(err);
-      throw err;
-    }
-  });
-
   test('Tenure People Page Export', async () => {
     try {
-      const tenureLanding = new TenureLanding(page);
+      const tenure = new Tenure(page);
 
       // Wait for people list tab and begin the export flow
       await page.waitForSelector(selector.peopleListTab);
@@ -61,11 +50,14 @@ test.describe('Tenure Test Cases', () => {
       await page.locator(selector.exportButton).click();
 
       // Check that the export completed successfully (toast message is visible)
-      const toastVisible = await tenureLanding.isToastVisible();
+      const toastVisible = await tenure.isToastVisible();
       expect(toastVisible).toBeTruthy();
       
-      // Optionally, check CSV headers
-      // await checkCsvHeaders();
+      /*
+
+      ToDo: Add export and csv verification for headers and row count 
+
+      */
     } catch (err) {
       console.error(err);
       throw err;

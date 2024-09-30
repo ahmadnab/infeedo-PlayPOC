@@ -2,7 +2,7 @@ const {expect} = require('@playwright/test');
 const config = require('../../../test-data/config.json');
 const selector = require('../components/tenureComponents.js');
 
-class NavigateToTenure{
+class Tenure{
     constructor(page){
         this.page = page;
     }
@@ -11,8 +11,9 @@ class NavigateToTenure{
         await this.page.waitForSelector(selector.sideMenu);
         await this.page.hover(selector.sideMenu); 
         await this.page.locator(selector.tenureModuleSelector).click();
+        await this.page.waitForSelector(selector.peopleListTab);
         const url = config.url.TenureURL;
-        await expect(this.page).toHaveURL(url);  
+        await expect(this.page).toHaveURL(url);
     }
     async isToastVisible() {
         try {
@@ -24,4 +25,4 @@ class NavigateToTenure{
       }
 }
 
-module.exports = NavigateToTenure;
+module.exports = Tenure;
