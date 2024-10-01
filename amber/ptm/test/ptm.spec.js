@@ -1,7 +1,5 @@
 const { test, expect, chromium } = require('@playwright/test');
 const LoginPage = require('../../login/pages/loginPage');
-const selector = require('../components/ptmComponents');
-const config = require('../../../test-data/config.json');
 const PTM = require('../pages/ptm');
 const common = require('../../../reusable/common');
 
@@ -41,6 +39,26 @@ test.describe('PTM Test Cases', () => {
         expect(isMatching).toBeTruthy();
 
     } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  });
+
+  test('Verify PTM case count with Trend Graph Export', async()=>{
+    try {
+      const ptm_obj = new PTM(page);
+      await ptm_obj.switchToPtmModule();
+      await ptm_obj.switchPtmTab('analytics');
+      await ptm_obj.trendGraphTabForCSA();
+      const targetPath = await common.exportTrendGraph(page, 'ptm-case-analysis-container');
+      const moduleData = await ptm_obj.processTrendGraphExport(targetPath);
+      const expectedData = await ptm_obj.getCaseCount();
+      const isMatching = common.compareData(moduleData, expectedData);
+      expect(isMatching).toBeTruthy();
+
+      common.cleanUpDownload(targetPath);
+    } 
+    catch (err) {
       console.error(err);
       throw err;
     }

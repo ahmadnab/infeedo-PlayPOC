@@ -1,6 +1,8 @@
 const {expect} = require('@playwright/test');
 const config = require('../../../test-data/config.json');
 const selector = require('../components/ptmComponents.js');
+const fs = require('fs');
+const csv = require('csv-parser');
 
 class PTM{
     constructor(page){
@@ -35,6 +37,11 @@ class PTM{
         }
     }
 
+    /*
+    TO DO: Add touchpoint filter capability for specific pulse and moment type
+        When creating Test Case 1 for pulse and mtm for ptm case verification
+    */
+
     async applyTouchpointFilterBasisModule(module_name, option = {}){
         switch (module_name) {
             case 'tenure':
@@ -56,6 +63,12 @@ class PTM{
         }
     }
 
+    async trendGraphTabForCSA(){
+        await this.page.locator(selector.trendTabCSA).click();
+        await this.page.waitForSelector(selector.trendCSA_timelineTabs);
+        await this.page.locator(selector.cumulativeToggle).click();
+    }
+
     async getCaseCount(){
         const expiredCaseElement = selector.caseBreakdownElements.expiredElement;
 
@@ -67,6 +80,46 @@ class PTM{
         return {
             totalCases, openCases, inProgressCases, closedCases, expiredCases
         }
+    }
+
+    async processTrendGraphExport(targetPath) {
+        return new Promise((resolve, reject) => {
+            let totalPTMOpen = 0;
+            let openCases = 0;
+            let inProgressCases = 0;
+            let closedCases = 0;
+            let expiredCases = 0;
+    
+            fs.createReadStream(targetPath)
+                .pipe(csv())
+                .on('data', (row) => {
+                    openCases += parseInt(row['Open'], 10) || 0;
+                    inProgressCases += parseInt(row['In-Progress'], 10) || 0;
+                    closedCases += parseInt(row['Closed'], 10) || 0;
+    
+                    if ('Expired' in row) {
+                        expiredCases += parseInt(row['Expired'], 10) || 0;
+                    }
+                    else {
+                        expiredCases = 0
+                    }
+                })
+                .on('end', () => {
+                    const totalCases = openCases + inProgressCases + closedCases + expiredCases;
+ 
+                    console.log(`Total PTM Open: ${totalPTMOpen}`);
+                    console.log(`Total PTM In-Progress: ${inProgressCases}`);
+                    console.log(`Total PTM Closed: ${closedCases}`);
+                    console.log(`Total PTM Expired: ${expiredCases}`);
+                    console.log(`Total PTM Cases: ${totalCases}`);
+    
+                    resolve({totalCases, openCases, inProgressCases,
+                                closedCases, expiredCases });
+                })
+                .on('error', (error) => {
+                    reject(error);
+                });
+        });
     }
 }
 

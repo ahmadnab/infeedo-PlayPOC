@@ -5,5 +5,6 @@ module.exports = {
         "inProgressCases": "//div[@class = 'ptmcase-badges']//label[@class = 'ds-badge yellow']//p",
         "closedCases": "//div[@class = 'ptmcase-badges']//label[@class = 'ds-badge green']//p",
         "expiredCases": "//div[@class = 'ptmcase-badges']//label[@class = 'ds-badge grey']//p",
-    }
+    },
+    "csvFileExport": "//span[text() = 'CSV file']"
 }
