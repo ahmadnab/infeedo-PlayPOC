@@ -18,5 +18,7 @@ module.exports = {
     ptmSourceApplyButton: "//div[@class = 'ds-dropdown-footer']//span[text() = 'Apply']",
     trendTabCSA: "//div[@id = 'ptm-case-analysis-container']//div[text() = 'Trend']",
     trendCSA_timelineTabs : "//div[@id = 'ptm-case-analysis-container']//div[@class = 'ds-segmented-tablist']",
-    cumulativeToggle : "//div[@id = 'ptm-case-analysis-container']//input[@type = 'checkbox']"
+    cumulativeToggle : "//div[@id = 'ptm-case-analysis-container']//input[@type = 'checkbox']",
+    agingOpenCase : "//div[@class= 'no-padding aging-score-card-container']//div[@class = 'ds-score-card-wrapper small ptm-aging-score-card'][1]//div[@class = 'ds-sc-score']//p",
+    agingInProgressCase: "//div[@class= 'no-padding aging-score-card-container']//div[@class = 'ds-score-card-wrapper small ptm-aging-score-card'][2]//div[@class = 'ds-sc-score']//p"
 }

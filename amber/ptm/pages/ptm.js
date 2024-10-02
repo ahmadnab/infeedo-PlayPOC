@@ -69,7 +69,13 @@ class PTM{
         await this.page.locator(selector.cumulativeToggle).click();
     }
 
-    async getCaseCount(){
+    /**
+     * 
+     * @param {*} is_aging - flag to get unresolved cases only for aging comparison
+     * @returns {object} count of ptm cases
+     */
+
+    async getCaseCount(is_aging = false){
         const expiredCaseElement = selector.caseBreakdownElements.expiredElement;
 
         const totalCases = Number(await this.page.locator(selector.totalCaseElement).textContent());
@@ -77,9 +83,15 @@ class PTM{
         const inProgressCases = Number(await this.page.locator(selector.caseBreakdownElements.inProgressElement).textContent());
         const closedCases = Number(await this.page.locator(selector.caseBreakdownElements.closedCaseElement).textContent());
         const expiredCases = (await this.page.locator(expiredCaseElement).isVisible()) ? Number(this.page.locator(expiredCaseElement).textContent()) : 0;
-        return {
-            totalCases, openCases, inProgressCases, closedCases, expiredCases
-        }
+
+        if (is_aging) 
+                return {
+                    openCases, inProgressCases
+                }
+            else 
+                return {
+                    totalCases, openCases, inProgressCases, closedCases, expiredCases
+                }
     }
 
     async processTrendGraphExport(targetPath) {
@@ -106,13 +118,7 @@ class PTM{
                 })
                 .on('end', () => {
                     const totalCases = openCases + inProgressCases + closedCases + expiredCases;
- 
-                    console.log(`Total PTM Open: ${totalPTMOpen}`);
-                    console.log(`Total PTM In-Progress: ${inProgressCases}`);
-                    console.log(`Total PTM Closed: ${closedCases}`);
-                    console.log(`Total PTM Expired: ${expiredCases}`);
-                    console.log(`Total PTM Cases: ${totalCases}`);
-    
+
                     resolve({totalCases, openCases, inProgressCases,
                                 closedCases, expiredCases });
                 })
@@ -120,6 +126,13 @@ class PTM{
                     reject(error);
                 });
         });
+    }
+
+    async getAgingCaseCount(){
+        const openCases = Number (await this.page.locator(selector.agingOpenCase).textContent());
+        const inProgressCases = Number (await this.page.locator(selector.agingInProgressCase).textContent());
+
+        return {openCases, inProgressCases}
     }
 }
 

@@ -47,7 +47,6 @@ test.describe('PTM Test Cases', () => {
   test('Verify PTM case count with Trend Graph Export', async()=>{
     try {
       const ptm_obj = new PTM(page);
-      await ptm_obj.switchToPtmModule();
       await ptm_obj.switchPtmTab('analytics');
       await ptm_obj.trendGraphTabForCSA();
       const targetPath = await common.exportTrendGraph(page, 'ptm-case-analysis-container');
@@ -62,6 +61,16 @@ test.describe('PTM Test Cases', () => {
       console.error(err);
       throw err;
     }
+  });
+
+  test('Verify aging numbers', async()=>{
+    const ptm_obj = new PTM(page);
+    await ptm_obj.switchPtmTab('analytics');
+    const moduleData = await ptm_obj.getCaseCount(true);
+    const expectedData = await ptm_obj.getAgingCaseCount();
+    const isMatching = common.compareData(moduleData, expectedData);
+    expect(isMatching).toBeTruthy();
+    
   });
 
 });

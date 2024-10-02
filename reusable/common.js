@@ -3,6 +3,14 @@ const commonSelectors = require('./commonSelectors');
 const path = require('path');
 const fs = require('fs');
 
+/**
+ * 
+ * @param {*} page 
+ * @param {*} module_name - to handle all modules, tenure, pulse, mtm
+ * @param {*} params - to handle pulse name and moment type navigation
+ * @returns object having count of ptm count per status
+ */
+
 async function getPTMCounts(page, module_name, params = null){
     if(module_name === 'tenure'){
         const tenure = new Tenure(page);
