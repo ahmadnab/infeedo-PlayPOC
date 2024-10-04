@@ -30,8 +30,8 @@ class LoginPage{
     }
 
     async commonLogin(){
-            await this.page.locator(selector.usernameInputField).fill(config.username);
-            await this.page.locator(selector.passwordInputField).fill(config.password);
+            await this.page.locator(selector.usernameInputField).fill(config.loginUser.username);
+            await this.page.locator(selector.passwordInputField).fill(config.loginUser.password);
             await this.page.locator(selector.loginButton).click();
     }
     async navigateToAB(){

@@ -1,8 +1,8 @@
 const { test, expect, chromium } = require('@playwright/test');
 const LoginPage = require('../../login/pages/loginPage.js');
-const Tenure = require('../pages/tenureLanding.js');
-const selector = require('../components/tenureComponents.js');
-const config = require('../../../test-data/config.json');
+const Tenure = require('../pages/tenure.js');
+const selector = require('../components/tenureComponents');
+const peopleTable = require('../../../reusable/peopleTable')
 
 let browser;
 let context;
@@ -32,12 +32,7 @@ test.describe('Tenure Test Cases', () => {
   test('Tenure People Page Export', async () => {
     try {
       const tenure = new Tenure(page);
-
-      // Wait for people list tab and begin the export flow
-      await page.waitForSelector(selector.peopleListTab);
-      await page.locator(selector.peopleListTab).click();
-
-      await page.waitForSelector(selector.exportIcon);
+      await tenure.switchToPeopleList();
       await page.locator(selector.exportIcon).click();
       await page.waitForSelector(selector.exportFilteredEmployeesOption);
       await page.locator(selector.exportFilteredEmployeesOption).click();
@@ -63,4 +58,11 @@ test.describe('Tenure Test Cases', () => {
       throw err;
     }
   });
+
+  test('Add & Verify User and Touchpoint Level Notes', async()=>{
+    const tenure = new Tenure(page);
+    await tenure.switchToPeopleList();
+    await peopleTable.searchUser();
+
+  })
 });

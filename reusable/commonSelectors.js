@@ -6,5 +6,9 @@ module.exports = {
         "closedCases": "//div[@class = 'ptmcase-badges']//label[@class = 'ds-badge green']//p",
         "expiredCases": "//div[@class = 'ptmcase-badges']//label[@class = 'ds-badge grey']//p",
     },
-    "csvFileExport": "//span[text() = 'CSV file']"
+    "csvFileExport": "//span[text() = 'CSV file']",
+    "peopleList" : {
+        "searchInputBox": "//input[@type = 'text' and @id = 'expandable-search']",
+        "expandableTableRow": "//tbody//tr[1]",
+    }
 }

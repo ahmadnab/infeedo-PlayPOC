@@ -23,6 +23,15 @@ class Tenure{
           return false;
         }
       }
+
+    async switchToPeopleList(){
+      await page.waitForSelector(selector.peopleListTab);
+      await page.locator(selector.peopleListTab).click();
+      await page.waitForSelector(selector.exportIcon);
+      const url = config.url.tenurePeopleListURL;
+      await expect(this.page).toHaveURL(url);
+    }
+
 }
 
 module.exports = Tenure;

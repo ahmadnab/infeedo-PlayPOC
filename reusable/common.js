@@ -1,4 +1,4 @@
-const Tenure = require('../amber/tenure/pages/tenureLanding');
+const Tenure = require('../amber/tenure/pages/tenure');
 const commonSelectors = require('./commonSelectors');
 const path = require('path');
 const fs = require('fs');
