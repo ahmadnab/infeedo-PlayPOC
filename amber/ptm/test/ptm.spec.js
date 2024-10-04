@@ -63,7 +63,7 @@ test.describe('PTM Test Cases', () => {
     }
   });
 
-  test('Verify aging numbers', async()=>{
+  test('Verify aging numbers on PTM Analytics Page', async()=>{
     const ptm_obj = new PTM(page);
     await ptm_obj.switchPtmTab('analytics');
     const moduleData = await ptm_obj.getCaseCount(true);
