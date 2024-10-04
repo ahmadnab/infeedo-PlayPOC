@@ -63,6 +63,7 @@ test.describe('Tenure Test Cases', () => {
     const tenure = new Tenure(page);
     await tenure.switchToPeopleList();
     await peopleTable.searchUser();
+    await peopleTable.chatActionBasedOnType('notes');
 
   })
 });
