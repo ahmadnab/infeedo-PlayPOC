@@ -2,7 +2,9 @@ const { test, expect, chromium } = require('@playwright/test');
 const LoginPage = require('../../login/pages/loginPage.js');
 const Tenure = require('../pages/tenure.js');
 const selector = require('../components/tenureComponents');
-const peopleTable = require('../../../reusable/peopleTable')
+const peopleTable = require('../../../reusable/peopleTable');
+const commonSelectors = require('../../../reusable/commonSelectors');
+const common = require('../../../reusable/common.js');
 
 let browser;
 let context;
@@ -59,11 +61,23 @@ test.describe('Tenure Test Cases', () => {
     }
   });
 
-  test('Add & Verify User and Touchpoint Level Notes', async()=>{
+  test('Add & Verify Touchpoint Level Notes', async()=>{
     const tenure = new Tenure(page);
     await tenure.switchToPeopleList();
-    await peopleTable.searchUser();
-    await peopleTable.chatActionBasedOnType('notes');
+    await peopleTable.searchUser(page);
 
+    const touchpoint =  await page.locator(commonSelectors.peopleList.touchpointRow).textContent();
+    const content =  `Automation note: ${new Date().toLocaleString()}`;
+    const formattedDate =  new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    const expectedData = {content: content, touchpoint: touchpoint, date: formattedDate};
+
+    const latest_added_note =  String(await peopleTable.chatActionBasedOnType('touchpoint_note', content, page)).trim();
+    const note_touchpoint =  await page.locator(commonSelectors.peopleList.note_metaData_noteType).textContent();
+    const note_date =  await page.locator(commonSelectors.peopleList.note_metaData_Date).textContent();
+    const moduleData = {content: latest_added_note, touchpoint: note_touchpoint, date: note_date};
+
+    const isMatching = common.compareData(expectedData, moduleData);
+    
+    expect(isMatching).toBeTruthy();
   })
 });

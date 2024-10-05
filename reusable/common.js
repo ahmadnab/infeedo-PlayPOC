@@ -42,22 +42,21 @@ async function getPTMCounts(page, module_name, params = null){
 function compareData(moduleData, expectedData){
     const keys = Object.keys(expectedData);
     for(const key of keys){
-        if(moduleData[key]!== expectedData[key]){
+        if (moduleData[key]!== expectedData[key]) {
             console.error(`Mismatch found at key: ${key}. 
                 Value in Module: ${moduleData[key]} vs Value in expected: ${expectedData[key]} `);
             return false;
         }
     }
-    return true;        // return true if all values are similar
+    return true;
 }
 /**
  * 
- * @param {*} inputString - string to extract digits in case element text is combination of both
- * @returns Number from string having combination of digits and characters
+ * @param {*} inputString - string to extract digits
+ * @returns digits from string
  */
 
 function extractAllNumbers(inputString) {
-    // Use regular expression to match all numeric values
     const str = String(inputString);
     const numbers = str.match(/\d+/g);
     return numbers ? Number(numbers) : 0;
@@ -80,11 +79,9 @@ async function exportTrendGraph(page, container_name){
         await page.locator(commonSelectors.csvFileExport).click()
     ]);
 
-    // Get the suggested filename for the download
     const fileName = download.suggestedFilename();
     const targetPath = path.join(__dirname, fileName);
 
-    // Save the downloaded file to the specified path
     await download.saveAs(targetPath);
     console.log(`File downloaded to: ${targetPath}`);
     return targetPath;

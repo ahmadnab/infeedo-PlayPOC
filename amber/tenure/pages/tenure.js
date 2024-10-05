@@ -25,9 +25,9 @@ class Tenure{
       }
 
     async switchToPeopleList(){
-      await page.waitForSelector(selector.peopleListTab);
-      await page.locator(selector.peopleListTab).click();
-      await page.waitForSelector(selector.exportIcon);
+      await this.page.waitForSelector(selector.peopleListTab);
+      await this.page.locator(selector.peopleListTab).click();
+      await this.page.waitForSelector(selector.exportIcon);
       const url = config.url.tenurePeopleListURL;
       await expect(this.page).toHaveURL(url);
     }
