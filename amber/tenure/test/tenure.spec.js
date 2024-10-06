@@ -61,7 +61,7 @@ test.describe('Tenure Test Cases', () => {
     }
   });
 
-  test('Add & Verify Touchpoint Level Notes', async()=>{
+test('Add & Verify Touchpoint Level Notes', async()=>{
     const tenure = new Tenure(page);
     await tenure.switchToPeopleList();
     await peopleTable.searchUser(page);
@@ -71,13 +71,46 @@ test.describe('Tenure Test Cases', () => {
     const formattedDate =  new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
     const expectedData = {content: content, touchpoint: touchpoint, date: formattedDate};
 
-    const latest_added_note =  String(await peopleTable.chatActionBasedOnType('touchpoint_note', content, page)).trim();
-    const note_touchpoint =  await page.locator(commonSelectors.peopleList.note_metaData_noteType).textContent();
-    const note_date =  await page.locator(commonSelectors.peopleList.note_metaData_Date).textContent();
-    const moduleData = {content: latest_added_note, touchpoint: note_touchpoint, date: note_date};
+    const moduleData =  await peopleTable.chatActionBasedOnType('touchpoint_note', content, page);
 
-    const isMatching = common.compareData(expectedData, moduleData);
-    
+    const isMatching = common.compareData(moduleData, expectedData);
     expect(isMatching).toBeTruthy();
-  })
+
+    const historyExpectedData = {
+      date: formattedDate, touchpoint: touchpoint, 
+          note: content 
+    }
+    const historyModuleData = await peopleTable.getHistoryData(page, 'notes');
+
+    const isHostoryMatching = common.compareData(historyExpectedData, historyModuleData);
+    expect(isHostoryMatching).toBeTruthy();
+});
+
+test('Add & Verify User Level Notes', async()=>{
+  const tenure = new Tenure(page);
+  await tenure.switchToPeopleList();
+  await peopleTable.searchUser(page);
+
+  const content =  `Automation User level note: ${new Date().toLocaleString()}`;
+  const formattedDate =  new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  const noteTouchpoint = `User-level`;
+  const expectedData = {content: content, touchpoint: noteTouchpoint, date: formattedDate};
+
+  const moduleData =  await peopleTable.chatActionBasedOnType('user_note', content, page);
+
+  const isMatching = common.compareData(moduleData, expectedData);
+  expect(isMatching).toBeTruthy();
+
+
+  const historyTouchpoint = `added an user-level note`;
+  const historyExpectedData = {
+    date: formattedDate, touchpoint: historyTouchpoint, 
+        note: content 
+  }
+  const historyModuleData = await peopleTable.getHistoryData(page, 'notes', 'userLevel');
+
+  const isHostoryMatching = common.compareData(historyExpectedData, historyModuleData);
+  expect(isHostoryMatching).toBeTruthy();
+});
+
 });
