@@ -34,8 +34,8 @@ test.describe('PTM Test Cases', () => {
         await ptm_obj.switchPtmTab('analytics');
         await ptm_obj.applyTouchpointFilterBasisModule('tenure');
         const ptmModuleCaseCount = await ptm_obj.getCaseCount();
-        const tenureModulePTMCaseCount = await common.getPTMCounts(page, 'tenure');
-        const isMatching = common.compareData(tenureModulePTMCaseCount, ptmModuleCaseCount);
+        const tenureExpectedPTMCaseCount = await common.getPTMCounts(page, 'tenure');
+        const isMatching = common.compareData(ptmModuleCaseCount, tenureExpectedPTMCaseCount);
         expect(isMatching).toBeTruthy();
 
     } catch (err) {

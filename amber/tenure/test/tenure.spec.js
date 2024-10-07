@@ -82,7 +82,7 @@ test('Add & Verify Touchpoint Level Notes', async()=>{
     }
     const historyModuleData = await peopleTable.getHistoryData(page, 'notes');
 
-    const isHostoryMatching = common.compareData(historyExpectedData, historyModuleData);
+    const isHostoryMatching = common.compareData(historyModuleData, historyExpectedData);
     expect(isHostoryMatching).toBeTruthy();
 });
 
@@ -101,15 +101,14 @@ test('Add & Verify User Level Notes', async()=>{
   const isMatching = common.compareData(moduleData, expectedData);
   expect(isMatching).toBeTruthy();
 
-
-  const historyTouchpoint = `added an user-level note`;
+  const historyUserLevelText = `added an user-level note`;
   const historyExpectedData = {
-    date: formattedDate, touchpoint: historyTouchpoint, 
+    date: formattedDate, touchpoint: historyUserLevelText, 
         note: content 
   }
   const historyModuleData = await peopleTable.getHistoryData(page, 'notes', 'userLevel');
 
-  const isHostoryMatching = common.compareData(historyExpectedData, historyModuleData);
+  const isHostoryMatching = common.compareData(historyModuleData, historyExpectedData);
   expect(isHostoryMatching).toBeTruthy();
 });
 
