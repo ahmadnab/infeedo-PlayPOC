@@ -30,8 +30,20 @@ module.exports = {
             "date_label" : "//div[@class = 'user-history-container']//div[@class = 'history-section'][1]/p",
             "touchpoint_text": "//div[@class = 'user-history-container']//div[1]//div[@class = 'history-statement-wrapper']/p//span[2]",
             "noteContent": "//div[@class = 'user-history-container']//div[1]//div[@class = 'history-statement-wrapper']//div[@class = 'history-content-box']/p/p",
-            "user_level_touchpoint_text": "//div[@class = 'user-history-container']//div[2]//div[@class = 'history-statement-wrapper']/p"
-
+            "user_level_touchpoint_text": "//div[@class = 'user-history-container']//div[2]//div[@class = 'history-statement-wrapper']/p",
+            "caseRiskText": "//div[@class = 'user-history-container']//div[1]//div[@class = 'history-statement-wrapper']/p//span[3]",
+            "ptmAddReason" : "//div[@class = 'user-history-container']//div[1]//div[contains(@class, 'history-reason-box')]//p",
+            "crossModalButton": "//div[contains(@class,'ds-modal ds-modal-width-large new-user-history-modal-wrapper')]//div[contains(@class,'ds-modal-header modal-header-')]//button[contains(@type,'button')]"
+        },
+        "PTM": {
+            "addToPtm_Button": "//span[normalize-space()='Add to PTM']",
+            "otherReasonCheckbox" : "//span[@title='Other Reasons']",
+            "ptmNoteEditor": "//div[@class='public-DraftEditorPlaceholder-root']",
+            "addButton": "//span[normalize-space()='Add']",
+            "removePtmDropdownOption": "//span[normalize-space()='Remove chat from PTM']",
+            "caseStatusButton": "//span[text()= 'Open']",
+            "crossModalButton": "//div[@class='ds-modal-header modal-header-']//button[@type='button']",
+            "removeButton": "//span[normalize-space()='Remove']"
         }
     }
 }

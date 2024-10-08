@@ -66,12 +66,12 @@ test('Add & Verify Touchpoint Level Notes', async()=>{
     await tenure.switchToPeopleList();
     await peopleTable.searchUser(page);
 
-    const touchpoint =  await page.locator(commonSelectors.peopleList.touchpointRow).textContent();
+    const touchpoint =  String(await page.locator(commonSelectors.peopleList.touchpointRow).textContent()).trim();
     const content =  `Automation note: ${new Date().toLocaleString()}`;
     const formattedDate =  new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
     const expectedData = {content: content, touchpoint: touchpoint, date: formattedDate};
 
-    const moduleData =  await peopleTable.chatActionBasedOnType('touchpoint_note', content, page);
+    const moduleData =  await peopleTable.chatActionBasedOnType('touchpoint_note', page, content);
 
     const isMatching = common.compareData(moduleData, expectedData);
     expect(isMatching).toBeTruthy();
@@ -96,7 +96,7 @@ test('Add & Verify User Level Notes', async()=>{
   const noteTouchpoint = `User-level`;
   const expectedData = {content: content, touchpoint: noteTouchpoint, date: formattedDate};
 
-  const moduleData =  await peopleTable.chatActionBasedOnType('user_note', content, page);
+  const moduleData =  await peopleTable.chatActionBasedOnType('user_note', page, content);
 
   const isMatching = common.compareData(moduleData, expectedData);
   expect(isMatching).toBeTruthy();
@@ -108,8 +108,35 @@ test('Add & Verify User Level Notes', async()=>{
   }
   const historyModuleData = await peopleTable.getHistoryData(page, 'notes', 'userLevel');
 
-  const isHostoryMatching = common.compareData(historyModuleData, historyExpectedData);
-  expect(isHostoryMatching).toBeTruthy();
+  const isHistoryMatching = common.compareData(historyModuleData, historyExpectedData);
+  expect(isHistoryMatching).toBeTruthy();
+});
+
+test('Add & Remove Tenure Chat From PTM', async()=>{
+  const tenure = new Tenure(page);
+  await tenure.switchToPeopleList();
+  await peopleTable.searchUser(page);
+  const content = `Adding to PTM by automation`
+  const status = await peopleTable.chatActionBasedOnType('addToPTM', page, content);
+  
+  expect(status).toBe('Open');
+
+  const touchpoint =  String(await page.locator(commonSelectors.peopleList.touchpointRow).textContent()).trim();
+  const historyExpectedData = {
+    touchpoint: touchpoint , risk: 'Medium risk', reason: content
+  }
+  const historyModuleData = await peopleTable.getHistoryData(page, 'addPtm');
+  const isHistoryMatching = common.compareData(historyModuleData, historyExpectedData);
+  expect(isHistoryMatching).toBeTruthy();
+
+  const removeContent = `Removing from PTM by automation`
+  await peopleTable.chatActionBasedOnType('removePtm', page, removeContent);
+
+  const historyExpectedRemovePTM_Data = ``; 
+  const historyModuleRemovePTM_Data = await peopleTable.getHistoryData(page, 'removePtm');
+
+  const isRemovePTM_HistoryMatching = common.compareData(historyModuleRemovePTM_Data, historyExpectedRemovePTM_Data);
+  expect(isRemovePTM_HistoryMatching).toBeTruthy();
 });
 
 });

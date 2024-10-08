@@ -29,7 +29,6 @@ test.describe('PTM Test Cases', () => {
   });
 
   test('Verify Tenure and PTM case Count', async () => {
-    try {
         const ptm_obj = new PTM(page);
         await ptm_obj.switchPtmTab('analytics');
         await ptm_obj.applyTouchpointFilterBasisModule('tenure');
@@ -37,11 +36,6 @@ test.describe('PTM Test Cases', () => {
         const tenureExpectedPTMCaseCount = await common.getPTMCounts(page, 'tenure');
         const isMatching = common.compareData(ptmModuleCaseCount, tenureExpectedPTMCaseCount);
         expect(isMatching).toBeTruthy();
-
-    } catch (err) {
-      console.error(err);
-      throw err;
-    }
   });
 
   test('Verify PTM case count with Trend Graph Export', async()=>{
@@ -70,7 +64,6 @@ test.describe('PTM Test Cases', () => {
     const expectedData = await ptm_obj.getAgingCaseCount();
     const isMatching = common.compareData(moduleData, expectedData);
     expect(isMatching).toBeTruthy();
-    
   });
 
 });
