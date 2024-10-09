@@ -8,11 +8,15 @@ class LoginPage{
     }
     async login(module){
         try{
-            await this.page.goto(`${config.baseURL}/login`)
+            await this.page.goto(`${config.url.baseURL}/login`)
             switch(module) {
                 case 'dashboard':
                     await this.commonLogin();
+<<<<<<< HEAD
                    await expect(this.page).toHaveURL(config.YesterdayHighlightsURL);
+=======
+                    await expect(this.page).toHaveURL(config.url.YesterdayHighlightsURL);
+>>>>>>> origin/master
                     break;
                 case 'chat':
                     await this.page.locator(selector.loginSwitchDropdown).click();
@@ -30,8 +34,8 @@ class LoginPage{
     }
 
     async commonLogin(){
-            await this.page.locator(selector.usernameInputField).fill(config.username);
-            await this.page.locator(selector.passwordInputField).fill(config.password);
+            await this.page.locator(selector.usernameInputField).fill(config.loginUser.username);
+            await this.page.locator(selector.passwordInputField).fill(config.loginUser.password);
             await this.page.locator(selector.loginButton).click();
     }
     async navigateToAB(){

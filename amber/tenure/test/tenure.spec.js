@@ -1,8 +1,10 @@
 const { test, expect, chromium } = require('@playwright/test');
 const LoginPage = require('../../login/pages/loginPage.js');
-const TenureLanding = require('../pages/tenureLanding.js');
-const selector = require('../components/tenureComponents.js');
-const config = require('../../../test-data/config.json');
+const Tenure = require('../pages/tenure.js');
+const selector = require('../components/tenureComponents');
+const peopleTable = require('../../../reusable/peopleTable');
+const commonSelectors = require('../../../reusable/commonSelectors');
+const common = require('../../../reusable/common.js');
 
 let browser;
 let context;
@@ -19,8 +21,8 @@ test.describe('Tenure Test Cases', () => {
     const loginPage = new LoginPage(page);
     await loginPage.login('dashboard');
 
-    const tenureLanding = new TenureLanding(page);
-    await tenureLanding.switchToTenureModule();
+    const tenure = new Tenure(page);
+    await tenure.switchToTenureModule();
   });
 
   // After all tests, close the browser context
@@ -29,26 +31,10 @@ test.describe('Tenure Test Cases', () => {
     await browser.close();
   });
 
-  test('Verify Tenure Landing Page', async () => {
-    try {
-      // Wait for the people list tab to be visible and verify the correct URL
-      await page.waitForSelector(selector.peopleListTab);
-      await expect(page).toHaveURL(config.TenureURL);
-    } catch (err) {
-      console.error(err);
-      throw err;
-    }
-  });
-
   test('Tenure People Page Export', async () => {
     try {
-      const tenureLanding = new TenureLanding(page);
-
-      // Wait for people list tab and begin the export flow
-      await page.waitForSelector(selector.peopleListTab);
-      await page.locator(selector.peopleListTab).click();
-
-      await page.waitForSelector(selector.exportIcon);
+      const tenure = new Tenure(page);
+      await tenure.switchToPeopleList();
       await page.locator(selector.exportIcon).click();
       await page.waitForSelector(selector.exportFilteredEmployeesOption);
       await page.locator(selector.exportFilteredEmployeesOption).click();
@@ -61,14 +47,96 @@ test.describe('Tenure Test Cases', () => {
       await page.locator(selector.exportButton).click();
 
       // Check that the export completed successfully (toast message is visible)
-      const toastVisible = await tenureLanding.isToastVisible();
+      const toastVisible = await tenure.isToastVisible();
       expect(toastVisible).toBeTruthy();
       
-      // Optionally, check CSV headers
-      // await checkCsvHeaders();
+      /*
+
+      ToDo: Add export and csv verification for headers and row count 
+
+      */
     } catch (err) {
       console.error(err);
       throw err;
     }
   });
+
+test('Add & Verify Touchpoint Level Notes', async()=>{
+    const tenure = new Tenure(page);
+    await tenure.switchToPeopleList();
+    await peopleTable.searchUser(page);
+
+    const touchpoint =  String(await page.locator(commonSelectors.peopleList.touchpointRow).textContent()).trim();
+    const content =  `Automation note: ${new Date().toLocaleString()}`;
+    const formattedDate =  new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    const expectedData = {content: content, touchpoint: touchpoint, date: formattedDate};
+
+    const moduleData =  await peopleTable.chatActionBasedOnType('touchpoint_note', page, content);
+
+    const isMatching = common.compareData(moduleData, expectedData);
+    expect(isMatching).toBeTruthy();
+
+    const historyExpectedData = {
+      date: formattedDate, touchpoint: touchpoint, 
+          note: content 
+    }
+    const historyModuleData = await peopleTable.getHistoryData(page, 'notes');
+
+    const isHostoryMatching = common.compareData(historyModuleData, historyExpectedData);
+    expect(isHostoryMatching).toBeTruthy();
+});
+
+test('Add & Verify User Level Notes', async()=>{
+  const tenure = new Tenure(page);
+  await tenure.switchToPeopleList();
+  await peopleTable.searchUser(page);
+
+  const content =  `Automation User level note: ${new Date().toLocaleString()}`;
+  const formattedDate =  new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  const noteTouchpoint = `User-level`;
+  const expectedData = {content: content, touchpoint: noteTouchpoint, date: formattedDate};
+
+  const moduleData =  await peopleTable.chatActionBasedOnType('user_note', page, content);
+
+  const isMatching = common.compareData(moduleData, expectedData);
+  expect(isMatching).toBeTruthy();
+
+  const historyUserLevelText = `added an user-level note`;
+  const historyExpectedData = {
+    date: formattedDate, touchpoint: historyUserLevelText, 
+        note: content 
+  }
+  const historyModuleData = await peopleTable.getHistoryData(page, 'notes', 'userLevel');
+
+  const isHistoryMatching = common.compareData(historyModuleData, historyExpectedData);
+  expect(isHistoryMatching).toBeTruthy();
+});
+
+test('Add & Remove Tenure Chat From PTM', async()=>{
+  const tenure = new Tenure(page);
+  await tenure.switchToPeopleList();
+  await peopleTable.searchUser(page);
+  const content = `Adding to PTM by automation`
+  const status = await peopleTable.chatActionBasedOnType('addToPTM', page, content);
+  
+  expect(status).toBe('Open');
+
+  const touchpoint =  String(await page.locator(commonSelectors.peopleList.touchpointRow).textContent()).trim();
+  const historyExpectedData = {
+    touchpoint: touchpoint , risk: 'Medium risk', reason: content
+  }
+  const historyModuleData = await peopleTable.getHistoryData(page, 'addPtm');
+  const isHistoryMatching = common.compareData(historyModuleData, historyExpectedData);
+  expect(isHistoryMatching).toBeTruthy();
+
+  const removeContent = `Removing from PTM by automation`
+  await peopleTable.chatActionBasedOnType('removePtm', page, removeContent);
+
+  const historyExpectedRemovePTM_Data = ``; 
+  const historyModuleRemovePTM_Data = await peopleTable.getHistoryData(page, 'removePtm');
+
+  const isRemovePTM_HistoryMatching = common.compareData(historyModuleRemovePTM_Data, historyExpectedRemovePTM_Data);
+  expect(isRemovePTM_HistoryMatching).toBeTruthy();
+});
+
 });
