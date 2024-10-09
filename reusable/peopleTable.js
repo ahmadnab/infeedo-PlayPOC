@@ -84,7 +84,7 @@ async function getHistoryData(page, action_type, note_type = 'touchpoint') {
     }
 
     if(action_type === 'removePtm'){
-
+        
     }
     
 }
