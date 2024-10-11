@@ -4,7 +4,7 @@ const constants = require('./constants');
 async function searchUser(page){
     await page.type(selector.peopleList.searchInputBox,  constants.PEOPLE_LIST_USER, { delay: 100 });
     await page.waitForTimeout(1000);
-    await page.keyboard.press('Enter');
+    await page.keyboard.press('Space');
     await page.waitForSelector(selector.peopleList.expandableTableRow);
     await page.locator(selector.peopleList.expandableTableRow).click();
 }
@@ -67,8 +67,8 @@ async function getHistoryData(page, action_type, note_type = 'touchpoint') {
         }
         const historyNoteContent = String(await page.locator(selector.peopleList.SEE_HISTORY.noteContent).textContent()).trim();
         
-        await page.locator(selector.peopleList.SEE_HISTORY.crossModalButton).click(); 
-        return {
+        await page.locator(selector.peopleList.SEE_HISTORY.doneButton).click(); 
+        return { 
             date: historyDate, touchpoint: historyTouchpoint,
                 note: historyNoteContent
         }
@@ -78,9 +78,11 @@ async function getHistoryData(page, action_type, note_type = 'touchpoint') {
         const historyDate = String(await page.locator(selector.peopleList.SEE_HISTORY.date_label).textContent()).trim();
         const historyTouchpoint = String(await page.locator(selector.peopleList.SEE_HISTORY.touchpoint_text).textContent()).trim();
         const caseRisk = String(await page.locator(selector.peopleList.SEE_HISTORY.caseRiskText).textContent()).trim();
+        const reasonCategory = String(await page.locator(selector.peopleList.SEE_HISTORY.ptmAddReasonCategory).textContent()).trim();
         const reason = String(await page.locator(selector.peopleList.SEE_HISTORY.ptmAddReason).textContent()).trim();
+        await page.locator(selector.peopleList.SEE_HISTORY.doneButton).click(); 
         return {
-            date: historyDate, touchpoint: historyTouchpoint, risk: caseRisk, reason: reason
+            date: historyDate, touchpoint: historyTouchpoint, risk: caseRisk, reason: reason, reasonCategory: reasonCategory
         }
     }
 
@@ -88,6 +90,7 @@ async function getHistoryData(page, action_type, note_type = 'touchpoint') {
         const historyTouchpoint = String(await page.locator(selector.peopleList.SEE_HISTORY.touchpoint_text).textContent()).trim();
         const reason = String(await page.locator(selector.peopleList.SEE_HISTORY.ptmRemoveReason).textContent()).trim();
         const historyDate = String(await page.locator(selector.peopleList.SEE_HISTORY.date_label).textContent()).trim();
+        await page.locator(selector.peopleList.SEE_HISTORY.doneButton).click();
         return {
             date: historyDate, touchpoint: historyTouchpoint, reason: reason
         }
@@ -98,21 +101,22 @@ async function getHistoryData(page, action_type, note_type = 'touchpoint') {
 async function addPTM(content, page) { 
     await page.locator(selector.peopleList.PTM.addToPtm_Button).click();
     await page.waitForSelector(selector.peopleList.PTM.otherReasonCheckbox);
+    await page.locator(selector.peopleList.PTM.otherReasonCheckbox).click();
     await page.locator(selector.peopleList.PTM.ptmNoteEditor).click();
     await page.keyboard.type(content, { delay: 100 });
     await page.locator(selector.peopleList.PTM.addButton).click();
     await page.waitForSelector(selector.peopleList.PTM.caseStatusButton);
     const status = await page.locator(selector.peopleList.PTM.caseStatusButton).textContent();
-    await page.locator(selector.peopleList.PTM.crossModalButton).click();
     return status;
 }
 
 async function removePtm(content, page) {
+    console.log('in removing ptm');
     await page.locator(selector.peopleList.PTM.caseStatusButton).click();
     await page.locator(selector.peopleList.PTM.removePtmDropdownOption).click();
     await page.locator(selector.peopleList.PTM.ptmNoteEditor).click();
     await page.keyboard.type(content, { delay: 100 });
-    await page.locator(selector.peopleList.PTM.removeButton);
+    await page.locator(selector.peopleList.PTM.removeButton).click();
 }
 
 async function addUserLevelNote(content, page) {
