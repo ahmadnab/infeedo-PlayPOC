@@ -75,16 +75,22 @@ async function getHistoryData(page, action_type, note_type = 'touchpoint') {
     }
 
     if(action_type === 'addPtm'){
+        const historyDate = String(await page.locator(selector.peopleList.SEE_HISTORY.date_label).textContent()).trim();
         const historyTouchpoint = String(await page.locator(selector.peopleList.SEE_HISTORY.touchpoint_text).textContent()).trim();
         const caseRisk = String(await page.locator(selector.peopleList.SEE_HISTORY.caseRiskText).textContent()).trim();
         const reason = String(await page.locator(selector.peopleList.SEE_HISTORY.ptmAddReason).textContent()).trim();
         return {
-            touchpoint: historyTouchpoint, risk: caseRisk, reason: reason
+            date: historyDate, touchpoint: historyTouchpoint, risk: caseRisk, reason: reason
         }
     }
 
     if(action_type === 'removePtm'){
-        
+        const historyTouchpoint = String(await page.locator(selector.peopleList.SEE_HISTORY.touchpoint_text).textContent()).trim();
+        const reason = String(await page.locator(selector.peopleList.SEE_HISTORY.ptmRemoveReason).textContent()).trim();
+        const historyDate = String(await page.locator(selector.peopleList.SEE_HISTORY.date_label).textContent()).trim();
+        return {
+            date: historyDate, touchpoint: historyTouchpoint, reason: reason
+        }
     }
     
 }

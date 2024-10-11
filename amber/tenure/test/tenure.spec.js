@@ -122,8 +122,9 @@ test('Add & Remove Tenure Chat From PTM', async()=>{
   expect(status).toBe('Open');
 
   const touchpoint =  String(await page.locator(commonSelectors.peopleList.touchpointRow).textContent()).trim();
+  const formattedDate =  new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
   const historyExpectedData = {
-    touchpoint: touchpoint , risk: 'Medium risk', reason: content
+    date: formattedDate, touchpoint: touchpoint , risk: 'Medium risk', reason: content
   }
   const historyModuleData = await peopleTable.getHistoryData(page, 'addPtm');
   const isHistoryMatching = common.compareData(historyModuleData, historyExpectedData);
@@ -132,7 +133,9 @@ test('Add & Remove Tenure Chat From PTM', async()=>{
   const removeContent = `Removing from PTM by automation`
   await peopleTable.chatActionBasedOnType('removePtm', page, removeContent);
 
-  const historyExpectedRemovePTM_Data = ``; 
+  const historyExpectedRemovePTM_Data = {
+    date: formattedDate, touchpoint: touchpoint, reason: removeContent
+  };
   const historyModuleRemovePTM_Data = await peopleTable.getHistoryData(page, 'removePtm');
 
   const isRemovePTM_HistoryMatching = common.compareData(historyModuleRemovePTM_Data, historyExpectedRemovePTM_Data);

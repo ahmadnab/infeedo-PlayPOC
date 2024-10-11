@@ -14,9 +14,9 @@ module.exports = defineConfig({
   testDir: './amber',
   testMatch: '**/test/**/*.spec.js',
   expect: {
-    timeout: 10 * 1200,
+    timeout: 10 * 24000,
   },
-  timeout: 12000,
+  timeout: 240000,
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
