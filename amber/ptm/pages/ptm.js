@@ -29,7 +29,7 @@ class PTM{
                 await this.page.locator(selector.ptmAnalyticsTab).click();
                 await this.page.waitForSelector(selector.ptmAnalyticsTab);
                 const currentUrl = await this.page.url();
-                const regex = /^https:\/\/beta\.amber\.infeedo\.com\/dashboard\/ptm\/analytics.*$/;
+                const regex = /^https:\/\/app\.infeedo\.com\/dashboard\/ptm\/analytics.*$/;
                 expect(currentUrl).toMatch(regex);
                 break;
             default:

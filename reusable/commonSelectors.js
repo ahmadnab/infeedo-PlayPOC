@@ -33,7 +33,8 @@ module.exports = {
             "user_level_touchpoint_text": "//div[@class = 'user-history-container']//div[2]//div[@class = 'history-statement-wrapper']/p",
             "caseRiskText": "//div[@class = 'user-history-container']//div[1]//div[@class = 'history-statement-wrapper']/p//span[3]",
             "ptmAddReason" : "//div[@class = 'user-history-container']//div[1]//div[contains(@class, 'history-reason-box')]//p",
-            "crossModalButton": "//div[contains(@class,'ds-modal ds-modal-width-large new-user-history-modal-wrapper')]//div[contains(@class,'ds-modal-header modal-header-')]//button[contains(@type,'button')]"
+            "crossModalButton": "//div[contains(@class,'ds-modal ds-modal-width-large new-user-history-modal-wrapper')]//div[contains(@class,'ds-modal-header modal-header-')]//button[contains(@type,'button')]",
+            "ptmRemoveReason": "//div[@class='new-user-history-modal-body']//div[1]//div[2]//div[2]//p[1]//p"
         },
         "PTM": {
             "addToPtm_Button": "//span[normalize-space()='Add to PTM']",
