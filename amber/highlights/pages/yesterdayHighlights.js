@@ -1,8 +1,7 @@
 const {expect} = require('@playwright/test');
 const selector = require('../components/highlightComponents.js');
 const config = require('../../../test-data/config.json')
-const TenureLanding = require('../../../amber/tenure/pages/tenureLanding.js');
-const exp = require('constants');
+const Tenure = require('../../tenure/pages/tenure.js');
 
 
 
@@ -70,8 +69,8 @@ class NavigateToYesterdayHighlights{
             let startdateValue = await this.page.locator(selector.startDate).getAttribute('value');
             let enddateValue = await this.page.locator(selector.endDate).getAttribute('value');
             await this.page.locator(selector.cancelDateFilter).click();
-            const tenureLanding = new TenureLanding(this.page);
-            await tenureLanding.switchToTenureModule();
+            const tenure = new Tenure(this.page);
+            await tenure.switchToTenureModule();
             const params ={ptmCasesIdentifiedValue,ptmCasesClosedValue,engagmentScoreaHighlightsValue,npsHighlightsValue,moodScoreHighlightsValue,responseRateHighlightsValue,totalPTMHighlightsValue,startdateValue,enddateValue,ESTextValue,NPSTextValue,MSTextValue,RRTextValue}
               await this.getandValidateDetailsTenureData(params);
         }

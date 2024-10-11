@@ -1,9 +1,7 @@
 const { test, expect, devices } = require('@playwright/test');
 const selector = require('../../login/components/loginComponents.js');
  const LoginPage = require('../../login/pages/loginPage.js');
-const NavigateToYesterdayHighlights = require('../pages/yesterdayHighlights');
-const loginData = require('../../../test-data/loginData.json');
-const config = require('../../../test-data/config.json');
+const NavigateToYesterdayHighlights = require('../pages/yesterdayHighlights')
 
 
 test.describe('Verify Highlights are consistent with respective module', () => {
