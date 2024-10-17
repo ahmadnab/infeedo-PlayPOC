@@ -2,6 +2,8 @@ const Tenure = require('../amber/tenure/pages/tenure');
 const commonSelectors = require('./commonSelectors');
 const path = require('path');
 const fs = require('fs');
+const axios = require('axios');
+
 
 /**
  * 
@@ -58,9 +60,10 @@ function compareData(moduleData, expectedData){
 
 function extractAllNumbers(inputString) {
     const str = String(inputString);
-    const numbers = str.match(/\d+/g);
-    return numbers ? Number(numbers) : 0;
+    const numbers = str.match(/[\d,]+(\.\d+)?/g);
+    return numbers ? numbers.map(num => Number(num.replace(/,/g, ''))) : 0;
 }
+
 
 /**
  * 
@@ -98,10 +101,49 @@ function cleanUpDownload(filePath) {
     }
 }
 
+async function getToken(){
+    const authenticate_url = `https://api.dev2.amber.infeedo.com/v1/authenticate`;
+    const authenticatePayload = {
+        email: '166958@inf-285.com',
+        password: [35, 28, 15, 83, 84, 95, 48, 18, 15, 67, 80, 84],
+        route: 'dashboard'
+      };
+      try {
+        const response = await axios.post(authenticate_url, authenticatePayload);
+    
+        if (response.status === 200) {
+            const token = response.data.token;
+            console.log('Token:', token);
+          return token;
+        } else {
+          console.error('Failed to get token:', response.status);
+          return null;
+        }
+      } catch (error) {
+        console.error('Error during token retrieval:', error);
+        return null;
+      }
+}
+
+async function waitForEnabled(page, xpath) {
+    await page.waitForSelector(`xpath=${xpath}`, { state: 'visible' });
+  
+    await page.waitForFunction(
+      (xpath) => {
+        const element = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+        return element && !element.disabled;
+      },
+      xpath 
+    );
+  }
+ 
 
 module.exports = {
     getPTMCounts,
     compareData,
     exportTrendGraph,
-    cleanUpDownload
+    cleanUpDownload,
+    getToken,
+    waitForEnabled,
+    extractAllNumbers
 }
