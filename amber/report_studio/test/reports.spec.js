@@ -35,7 +35,8 @@ test.describe('Report Studio Summary Slides Test Cases', () => {
   test('Verify Tenure and Response Rate Summary Count', async () => {
         const tenureTemplateName = 'Annual Tenure Report (Summary)';
         const report_obj = new ReportStudio(page, 'tenure');
-        const rrSummaryData = await report_obj.createReportFromTemplates(tenureTemplateName);
+        const reportURL = await report_obj.createReportFromTemplates(tenureTemplateName);
+        const rrSummaryData = await report_obj.extractDataFromReportSlide(reportURL, 'response-rate-summary');
         const tenure_obj = new Tenure(page);
         await tenure_obj.switchToTenureModule();
         const dashboardData = await tenure_obj.getResponseRateSummaryData();

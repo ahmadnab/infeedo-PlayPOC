@@ -8,6 +8,8 @@ module.exports = {
         searchTemplate: "//div[@class='config-global-templates-modal-left-header']//input[@id='ds-input-field']",
         useTemplateButton: "//div[contains(@class, 'config-global-templates-ds-modal')]//div[@class = 'ds-templates-card-body']//button",
         generateReportButton: "//div[contains(@class , 'template-modal')]//button[contains(@class, 'ds-button--primary')]",
+        pulseTab: "//div[@class = 'ds-segmented-tablist']//div[contains(@class, 'ds-segmented-tab-wrapper')][2]",
+        exitTab: "//div[@class = 'ds-segmented-tablist']//div[contains(@class, 'ds-segmented-tab-wrapper')][3]"
     }
 
 }

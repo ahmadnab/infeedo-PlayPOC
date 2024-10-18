@@ -21,10 +21,10 @@ class ReportStudio{
         const survey_type = this.module;
         await this.page.locator(selector.globalTemplates.viewTemplatesButton).click();
         if(survey_type === 'pulse'){
-            
+            await this.page.locator(selector.globalTemplates.pulseTab).click();
         }
-        if(survey_type === 'exit'){
-            
+        if(survey_type === 'exit'){ 
+            await this.page.locator(selector.globalTemplates.exitTab).click();
         }
         await this.page.locator(selector.globalTemplates.searchTemplate).fill(template_name);
         await this.page.locator(selector.globalTemplates.useTemplateButton).click();
@@ -65,7 +65,11 @@ class ReportStudio{
         catch(err){
             console.error('Error fetching slide URL:', err);
         }
-    };
+    }
+
+    async extractDataFromReportSlide(url, structure_key){
+        // ToDo based on structure key, get the slide url and format data to compare with dashboard data
+    }
 
 }
 
