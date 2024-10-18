@@ -105,7 +105,7 @@ async function getToken(){
     const authenticate_url = `https://api.dev2.amber.infeedo.com/v1/authenticate`;
     const authenticatePayload = {
         email: '166958@inf-285.com',
-        password: [35, 28, 15, 83, 84, 95, 48, 18, 15, 67, 80, 84],
+        password: [35, 28, 15, 83, 84, 95, 48, 18, 15, 67, 80, 84],     // change based on user and encoded password
         route: 'dashboard'
       };
       try {
